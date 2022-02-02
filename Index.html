@@ -52,6 +52,16 @@ inputs.forEach(input => {
         valida(evento.target)
     })
 })
+          function criaMascara(mascaraInput) {
+    const maximoInput = document.getElementById(`${mascaraInput}Input`).maxLength;
+    let valorInput = document.getElementById(`${mascaraInput}Input`).value;
+    let valorSemPonto = document.getElementById(`${mascaraInput}Input`).value.replace(/([^0-9])+/g, "");
+    const mascaras = {
+      CPF: valorInput.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+    };
+
+    valorInput.length === maximoInput ? document.getElementById(`${mascaraInput}Input`).value = mascaras[mascaraInput] : document.getElementById(`${mascaraInput}Input`).value = valorSemPonto;
+  };
     </script>
 </body>
 </html>
