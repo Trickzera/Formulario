@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -33,12 +32,13 @@
                         <span class="input-mensagem-erro">Este campo não está válido</span>
                     </div>
                     <div class="input-container">
-                        <input name="cpf" id="cpf" maxlength="14" oninput="criaMascara('CPF')" class="input" type="text" placeholder="CPF" data-tipo="cpf" required>						
+                        <input name="cpf" id="cpf" maxlength="14" oninput="Mascara" class="input" type="text" placeholder="CPF" data-tipo="cpf" required>						
                         <label class="input-label" for="cpf"></label>
                         <span class="input-mensagem-erro">Este campo não está válido</span>
                     </div>
 
                 <button class="botao">Cadastrar</a></button>
+                    <h1><br><br>Patrick Andrino da Silva</h1>
             </form>
         </section>
     </main>
@@ -52,16 +52,20 @@ inputs.forEach(input => {
         valida(evento.target)
     })
 })
-          function criaMascara(mascaraInput) {
-    const maximoInput = document.getElementById(`${mascaraInput}Input`).maxLength;
-    let valorInput = document.getElementById(`${mascaraInput}Input`).value;
-    let valorSemPonto = document.getElementById(`${mascaraInput}Input`).value.replace(/([^0-9])+/g, "");
-    const mascaras = {
-      CPF: valorInput.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-    };
+	function mascara(i){
+   
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "14");
+   if (v.length == 3 || v.length == 7) i.value += ".";
+   if (v.length == 11) i.value += "-";
 
-    valorInput.length === maximoInput ? document.getElementById(`${mascaraInput}Input`).value = mascaras[mascaraInput] : document.getElementById(`${mascaraInput}Input`).value = valorSemPonto;
-  };
+}
     </script>
 </body>
 </html>
